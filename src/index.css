@@ -1,1 +1,106 @@
+@font-face {
+    font-family: 'Manrope-Bold';
+    src: local('Manrope-Bold'), url(./fonts/Manrope-Bold.ttf) format('truetype');
+}
 
+@font-face {
+    font-family: 'Manrope-Medium';
+    src: local('Manrope-Medium'), url(./fonts/Manrope-Medium.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Manrope-Regular';
+    src: local('Manrope-Regular'), url(./fonts/Manrope-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Manrope-Semibold';
+    src: local('Manrope-Semibold'), url(./fonts/Manrope-Semibold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter-Medium';
+    src: local('Inter-Medium'), url(./fonts/Inter-Medium.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Archivo-Medium';
+    src: local('Archivo-Medium'), url(./fonts/Archivo-Medium.ttf) format('truetype');
+}
+
+body {
+    margin: 0;
+}
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+    background-color: #555555;
+}
+
+.header {
+    /* position: absolute; */
+    width: 100%;
+}
+
+.header__container {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1598px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__logo {
+    max-height: 60px;
+    max-width: 199px;
+}
+
+@media (min-width: 1920px) {
+    .header__container {
+        height: 120px;
+    }
+
+    .header__actions {
+        column-gap: 30px;
+    }
+}
+
+.menu {
+    background-color: #0F0F0F;
+    border: 4px solid #1F1F1F;
+    border-radius: 12px;
+}
+
+.menu__container {
+    margin: 10px;
+}
+
+.menu__btn {
+    padding: 14px 24px;
+    font-size: 18px;
+    color: #BFBFBF;
+    font-family: Manrope-Regular;
+    background-color: #0F0F0F;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+}
+
+.menu__btn:hover {
+    color: #FFFFFF;
+    font-family: Manrope-Medium;
+    background-color: #1A1A1A;
+}
+
+.header__actions {
+    display: flex;
+}
+
+.main_image {
+    height: 860px;
+    width: 1920px;
+    background-image: url(assets/images/main_image_1.jpg), url(assets/icons/big_logo.svg);
+    background-repeat: repeat-x, no-repeat;
+    background-position: center, center;
+}
