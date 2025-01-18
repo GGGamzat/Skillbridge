@@ -159,3 +159,26 @@ body {
     font-size: 18px;
     color: #FFFFFF;
 }
+
+
+
+
+
+.main__container {
+    position: relative;
+    margin: 0 auto;
+    top: 200px;
+    max-width: 1598px;
+}
+
+.movie-list {
+    background-color: #141414;
+}
+
+.movie-card__title {
+    margin: 0;
+    line-height: 50px;
+    font-family: Manrope-Bold;
+    font-size: 30px;
+    color: #FFFFFF;
+}
