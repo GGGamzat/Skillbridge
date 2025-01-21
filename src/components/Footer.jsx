@@ -67,9 +67,9 @@ function Footer() {
                     <nav className="block-info__nav">
                         <ul>
                             <li><a href="">Terms of Use</a></li>
-                            <li>|</li>
+                            <li className="line">|</li>
                             <li><a href="">Privacy Policy</a></li>
-                            <li>|</li>
+                            <li className="line">|</li>
                             <li><a href="">Cookie Policy</a></li>
                         </ul>
                     </nav>
