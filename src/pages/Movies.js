@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import Slider from '../components/Slider';
+import Footer from '../components/Footer';
 import Movie_card from './Movie_card';
 
 export class Movies extends Component {
@@ -22,6 +23,7 @@ export class Movies extends Component {
                         </div>
                     </div>
                 </main>
+                <Footer />
             </>
         );
     }
