@@ -1,34 +1,19 @@
-from pydantic import BaseModel, Field
-from typing import List, Optional
-from datetime import datetime
+from pydantic import BaseModel
+from typing import List
 
 
-class PriceTickBase(BaseModel):
+class PriceDataBase(BaseModel):
     ticker: str
     price: float
     timestamp: int
 
 
-class PriceTickCreate(PriceTickBase):
+class PriceDataCreate(PriceDataBase):
     pass
 
 
-class PriceTick(PriceTickBase):
+class PriceDataResponse(PriceDataBase):
     id: int
-    created_at: datetime
 
     class Config:
         from_attributes = True
-
-
-class PriceResponse(BaseModel):
-    ticker: str
-    price: float
-    timestamp: int
-    datetime: datetime
-
-
-class AllPricesResponse(BaseModel):
-    ticker: str
-    count: int
-    prices: List[PriceResponse]

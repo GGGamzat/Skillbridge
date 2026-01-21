@@ -1,18 +1,14 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, func
-from sqlalchemy.ext.declarative import declarative_base
-from datetime import datetime
-
-Base = declarative_base()
+from sqlalchemy import Column, Integer, String, Float, BigInteger
+from app.database import Base
 
 
-class PriceTick(Base):
-    __tablename__ = "price_ticks"
+class PriceData(Base):
+    __tablename__ = "price_data"
 
     id = Column(Integer, primary_key=True, index=True)
     ticker = Column(String, index=True, nullable=False)
     price = Column(Float, nullable=False)
-    timestamp = Column(Integer, nullable=False, index=True)
-    created_at = Column(DateTime, default=func.now())
+    timestamp = Column(BigInteger, nullable=False)
 
     def __repr__(self):
-        return f"<PriceTick(ticker={self.ticker}, price={self.price}, timestamp={self.timestamp})>"
+        return f"<PriceData {self.ticker}: {self.price} at {self.timestamp}>"
