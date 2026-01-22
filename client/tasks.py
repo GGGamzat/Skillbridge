@@ -1,7 +1,7 @@
 from celery import Celery
-from app.deribit_client import DeribitClient
+from client.deribit_client import DeribitClient
 from app.database import SessionLocal
-from app.models import PriceData
+from app import models
 from app.config import settings
 import asyncio
 import logging
@@ -23,35 +23,34 @@ celery_app.conf.update(
 )
 
 
-def run_async(coro):
-    loop = asyncio.get_event_loop()
-    return loop.run_until_complete(coro)
-
-
 @celery_app.task
 def fetch_and_store_prices():
     client = DeribitClient()
 
-    prices = run_async(client.get_prices(["btc", "eth"]))
+    async def fetch_prices():
+        return await client.get_prices(["btc", "eth"])
+
+    loop = asyncio.get_event_loop()
+    prices_data = loop.run_until_complete(fetch_prices())
 
     db = SessionLocal()
     try:
-        for price_data in prices:
-            price_record = PriceData(
-                ticker=price_data["ticker"],
-                price=price_data["price"],
-                timestamp=price_data["timestamp"]
+        for price_item in prices_data:
+            price_record = models.PriceData(
+                ticker=price_item["ticker"],
+                price=price_item["price"],
+                timestamp=price_item["timestamp"]
             )
             db.add(price_record)
         db.commit()
-        logger.info(f"Saved {len(prices)} price records")
+        logger.info(f"Сохранено {len(prices_data)} записей")
     except Exception as e:
         db.rollback()
-        logger.error(f"Error saving to database: {e}")
+        logger.error(f"Ошибка сохранения в БД: {e}")
     finally:
         db.close()
 
-    return {"status": "success", "records_saved": len(prices)}
+    return {"status": "success", "records_saved": len(prices_data)}
 
 
 celery_app.conf.beat_schedule = {
