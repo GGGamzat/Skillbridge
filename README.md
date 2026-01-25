@@ -16,9 +16,30 @@ git clone https://github.com/GGGamzat/DeriTrack.git
 cd DeriTrack
 ```
 
++ Создайте в корне проекта файл .env со своими данными
+```
+# Database
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=deribit_db
+DATABASE_URL=postgresql://postgres:postgres@db:5432/deribit_db
+
+# Celery
+CELERY_BROKER_URL=redis://redis:6379/0
+CELERY_RESULT_BACKEND=redis://redis:6379/0
+
+# Deribit
+DERIBIT_API_URL=https://www.deribit.com/api/v2/public
+```
+
 + Соберите и запустите с помощью Docker
 ```
 docker-compose up --build
+```
+
++ Запуск тестов
+```
+docker-compose exec web python tests/test_api.py
 ```
 
 # 📡 API Эндпоинты
